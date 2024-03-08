@@ -36,12 +36,12 @@ function getTransferNetwork(address) {
   const isSolanaAddress = /\.sol$/.test(address) || /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(address);
   const isTronAddress = /^T[1-9A-HJ-NP-Za-km-z]{33}$/.test(address);
 
-  if (isSolanaAddress) {
-    return 'Solana';
-  }
-
   if (isTronAddress) {
     return 'Tron';
+  }
+
+  if (isSolanaAddress) {
+    return 'Solana';
   }
 
   return '';
