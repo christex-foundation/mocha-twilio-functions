@@ -1,4 +1,12 @@
 //@ts-check
+
+const exchangeRates = {
+  base: 'USD',
+  rates: {
+    SLL: 23.5,
+  },
+};
+
 /**
  * @description This function is used to calculate transaction details
  */
