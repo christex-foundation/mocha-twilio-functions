@@ -19,6 +19,7 @@ exports.handler = async function (context, event, callback) {
     recipient: event.address,
     localAmount,
     localCurrency: 'SLL',
+    currency: transferNetwork == 'Tron' ? 'USDT' : event.currency,
   });
 };
 
