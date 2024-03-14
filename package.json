@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "Colin Ogoo",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@solana/web3.js": "^1.91.1",
+    "dotenv": "^16.4.5"
+  }
 }
