@@ -31,6 +31,12 @@ const whatsappUserAccount = PublicKey.createWithSeed(keypair.publicKey, seed, TO
 // create account with seed; assigned to TOKEN_PROGRAM_ID
 const createAccountWithSeedIx = createAccountWithSeed();
 
+
+/**
+ * @param {PublicKey} basePubKey
+ * @param {string} seed
+ * @param {PublicKey} newAccountPubkey
+ */
 function createAccountWithSeed(basePubKey, seed, newAccountPubkey) {
   const ix = SystemProgram.createAccountWithSeed({
     fromPubkey: basePubKey,
