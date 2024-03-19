@@ -4,16 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "transfer-spl": "node transfer.mjs",
-    "create-wallet": "node wallet.mjs"
+    "test:spl-transfer": "node scripts/transfer.mjs",
+    "test:create-wallet": "node scripts/wallet.mjs",
+    "start": "node index.mjs"
   },
   "keywords": [],
   "author": "Colin Ogoo",
   "license": "ISC",
   "dependencies": {
+    "@hono/node-server": "^1.8.2",
     "@solana-developers/helpers": "^2.1.0",
     "@solana/spl-token": "^0.4.1",
     "@solana/web3.js": "^1.91.1",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "hono": "^4.1.2"
   }
 }
