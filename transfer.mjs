@@ -10,24 +10,19 @@ dotEnvConfig();
 const USDC_DEVNET_MINT = new PublicKey(process.env.USDC_MINT);
 const connection = new Connection(clusterApiUrl('devnet'));
 const keypair = await getKeypairFromEnvironment('MOCHA_SECRET_KEY');
-// use whatsapp phone number as seed
-const seed = '23276242792';
 
-// GET the public key of the account with seed, assigned to TOKEN_PROGRAM_ID
-const whatsappUserAccount = await PublicKey.createWithSeed(
-  keypair.publicKey,
-  seed,
-  TOKEN_PROGRAM_ID,
-);
-
-console.log(await transferSPL());
+console.log(await transferSPL('23276242792'));
 
 /**
  * @description Transfer 1 USDC to an account
  * @returns {Promise<string>}
+ * @param {string} phoneNumber
  */
-async function transferSPL() {
-  // IF; sending to a non-whatsapp user other wise same code as line 17
+async function transferSPL(phoneNumber) {
+  // use whatsapp phone number as seed
+  const whatsappUserAccount = await getUserTokenAccount(phoneNumber);
+
+  // IF; sending to a non-whatsapp otherwise used `getUserTokenAccount`
   const toTokenAccount = await getOrCreateAssociatedTokenAccount(
     connection,
     keypair,
@@ -43,4 +38,13 @@ async function transferSPL() {
     keypair,
     1,
   );
+}
+
+/**
+ * @description GET the public key of the account with seed, assigned to TOKEN_PROGRAM_ID
+ * @returns {Promise<PublicKey>}
+ * @param {string} phoneNumber
+ */
+async function getUserTokenAccount(phoneNumber) {
+  return await PublicKey.createWithSeed(keypair.publicKey, phoneNumber, TOKEN_PROGRAM_ID);
 }
