@@ -7,6 +7,7 @@ import { config as dotEnvConfig } from 'dotenv';
 dotEnvConfig();
 
 // USDC Mint address on Devnet
+// @ts-ignore
 const USDC_DEVNET_MINT = new PublicKey(process.env.USDC_MINT);
 const connection = new Connection(clusterApiUrl('devnet'));
 const keypair = await getKeypairFromEnvironment('MOCHA_SECRET_KEY');
