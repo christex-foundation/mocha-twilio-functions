@@ -2,7 +2,7 @@
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 import wallet from './wallet.mjs';
-import { getRouterName, showRoutes } from 'hono/dev';
+import { showRoutes } from 'hono/dev';
 
 const app = new Hono().basePath('/api');
 
