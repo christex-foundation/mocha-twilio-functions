@@ -13,7 +13,7 @@ app.post('/', async (c) => {
   if (!fromNumber || !toNumber || !amount) {
     return c.json(
       {
-        message: 'Invalid request',
+        message: 'Invalid request; missing `fromNumber`, `toNumber`, or `amount`',
       },
       400,
     );
