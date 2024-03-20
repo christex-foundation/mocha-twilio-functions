@@ -27,6 +27,7 @@ app.post('/', async (c) => {
       amount: 100,
       transactionId:
         '5kpKvUGgioKNSurev8vy4oevq25C9xnc21eFTpQ2DDkRoDkExnotSFXQdqTuGE4UMzMXcD827P1btUybh1HiTLyH',
+      userId,
     },
     200,
   );
