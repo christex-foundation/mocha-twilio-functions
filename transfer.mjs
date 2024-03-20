@@ -8,7 +8,7 @@ const app = new Hono();
 
 app.get('/', (c) => c.json('Hello Transfer!'));
 app.post('/', async (c) => {
-  const { fromNumber, toNumber, amount } = await c.req.json();
+  const { fromNumber, toNumber, amount } = await c.req.json().catch(() => ({}));
 
   if (!fromNumber || !toNumber || !amount) {
     return c.json(
