@@ -24,7 +24,10 @@ app.post('/', async (c) => {
   return c.json(
     {
       message: 'Transfer successful',
-      signature: sig,
+      fromNumber,
+      toNumber,
+      amount,
+      transactionId: sig,
     },
     200,
   );
