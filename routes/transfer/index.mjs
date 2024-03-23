@@ -1,6 +1,7 @@
 //@ts-check
 import { Hono } from 'hono';
 import { config as dotEnvConfig } from 'dotenv';
+import { transfer } from './transfer.mjs';
 
 dotEnvConfig();
 
@@ -34,13 +35,3 @@ app.post('/', async (c) => {
 });
 
 export default app;
-
-/**
- * @param {string} fromNumber
- * @param {string} toNumber
- * @param {number} amount
- * @returns {Promise<string>}
- */
-async function transfer(fromNumber, toNumber, amount) {
-  return '5kpKvUGgioKNSurev8vy4oevq25C9xnc21eFTpQ2DDkRoDkExnotSFXQdqTuGE4UMzMXcD827P1btUybh1HiTLyH';
-}
