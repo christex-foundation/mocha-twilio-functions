@@ -20,7 +20,7 @@ app.post('/', async (c) => {
     );
   }
 
-  const sig = await transfer(fromNumber, toNumber, Number(amount));
+  const transactionId = await transfer(fromNumber, toNumber, Number(amount));
 
   return c.json(
     {
@@ -28,7 +28,7 @@ app.post('/', async (c) => {
       fromNumber,
       toNumber,
       amount,
-      transactionId: sig,
+      transactionId,
     },
     200,
   );
