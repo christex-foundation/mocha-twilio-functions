@@ -34,5 +34,10 @@ export async function transferUSDC(fromNumber, toNumber, amount) {
     toWhatsappUserAccount,
     MOCHA_KEYPAIR,
     parsedAmount,
+    undefined,
+    {
+      skipPreflight: true,
+      commitment: 'processed',
+    },
   );
 }

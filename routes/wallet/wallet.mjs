@@ -16,7 +16,7 @@ const connection = new Connection(clusterApiUrl('devnet'));
  */
 export async function fetchWalletBalance(phoneNumber) {
   const address = await getOrCreateUserTokenAccount(MOCHA_KEYPAIR, phoneNumber);
-  const balance = await connection.getTokenAccountBalance(address);
+  const balance = await connection.getTokenAccountBalance(address, 'processed');
 
   return balance.value.uiAmount;
 }

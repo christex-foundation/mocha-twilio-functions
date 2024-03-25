@@ -30,7 +30,7 @@ export async function getOrCreateUserTokenAccount(owner, phoneNumber) {
 
   let account;
   try {
-    account = await getAccount(connection, address);
+    account = await getAccount(connection, address, 'processed');
   } catch (error) {
     // create account with seed; assigned to TOKEN_PROGRAM_ID
     const accountWithSeedIx = createAccountWithSeed(owner.publicKey, phoneNumber, address);
@@ -44,7 +44,8 @@ export async function getOrCreateUserTokenAccount(owner, phoneNumber) {
 
     const tx = new Transaction().add(accountWithSeedIx, initiailizeAccountIx);
     await sendAndConfirmTransaction(connection, tx, [owner], {
-      commitment: 'confirmed',
+      skipPreflight: true,
+      commitment: 'processed',
     });
   }
 
