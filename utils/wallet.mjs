@@ -43,10 +43,12 @@ export async function getOrCreateUserTokenAccount(owner, phoneNumber) {
     );
 
     const tx = new Transaction().add(accountWithSeedIx, initiailizeAccountIx);
-    await sendAndConfirmTransaction(connection, tx, [owner]);
+    await sendAndConfirmTransaction(connection, tx, [owner], {
+      commitment: 'confirmed',
+    });
   }
 
-  return (await getAccount(connection, address)).address;
+  return (await getAccount(connection, address, 'processed')).address;
 }
 
 /**
