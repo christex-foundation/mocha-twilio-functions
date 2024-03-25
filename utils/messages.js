@@ -1,7 +1,7 @@
 //@ts-check
 
 // Function to send a single message
-export async function sendSingleMessage({ client, contentTemplateVariables }) {
+async function sendSingleMessage({ client, contentTemplateVariables }) {
   return client.messages
     .create({
       from: process.env.MESSAGING_SERVICE_SID,
@@ -10,7 +10,7 @@ export async function sendSingleMessage({ client, contentTemplateVariables }) {
       to: contentTemplateVariables.sendTo,
     })
     .then((message) => {
-      console.log(`Message ${message.sid} sent to ${contentTemplateVariables.sender} `);
+      console.log(`Message ${message.sid} sent to ${contentTemplateVariables.sendTo} `);
       return message;
     })
     .catch((err) => {
@@ -19,8 +19,8 @@ export async function sendSingleMessage({ client, contentTemplateVariables }) {
 }
 
 // Function to register the message using Twilio Sync
-export async function registerMessage({ client, contentTemplateVariables, message }) {
-  const phoneNumber = extractPhoneNumber(contentTemplateVariables.sender);
+async function registerMessage({ client, contentTemplateVariables, message }) {
+  const phoneNumber = contentTemplateVariables.sendTo;
 
   return client.sync.v1
     .services(process.env.SYNC_SERVICE_SID)
@@ -41,11 +41,4 @@ export async function registerMessage({ client, contentTemplateVariables, messag
     });
 }
 
-/**
- * @param {string} whatsappNumber
- * @returns {string}
- * @description Extracts the phone number from a whatsapp formated number
- */
-function extractPhoneNumber(whatsappNumber) {
-  return whatsappNumber.split(':')[1];
-}
+module.exports = { sendSingleMessage, registerMessage };

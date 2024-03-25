@@ -1,6 +1,6 @@
 //@ts-check
-import { registerMessage, sendSingleMessage } from '../utils/messages';
-import { fetchWalletBalance } from '../utils/wallet';
+const { registerMessage, sendSingleMessage } = require('../utils/messages');
+const { fetchWalletBalance } = require('../utils/wallet');
 
 /**
  * @description This function is used to send a payment notification
@@ -16,7 +16,7 @@ exports.handler = async function (context, event, callback) {
 
   const contentTemplateVariables = {
     1: from,
-    2: amount,
+    2: `$${walletBalance}`,
     contentSid,
     sendTo: `whatsapp:+${sendTo}`,
   };
