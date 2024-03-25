@@ -14,6 +14,9 @@ app.get('/:phone_number', async (c) => {
     return c.json('Invalid request; missing `phoneNumber`', 400);
   }
 
+  // validate phone number based on area code
+  // validatePhoneNumber(phoneNumber);
+
   const balance = await fetchWalletBalance(phoneNumber);
 
   return c.json({
