@@ -1,5 +1,6 @@
 //@ts-check
 import { registerMessage, sendSingleMessage } from '../utils/messages';
+import { fetchWalletBalance } from '../utils/wallet';
 
 /**
  * @description This function is used to send a payment notification
@@ -10,6 +11,8 @@ exports.handler = async function (context, event, callback) {
    */
   const client = context.getTwilioClient();
   const { sendTo, from, amount, contentSid } = event;
+
+  const walletBalance = await fetchWalletBalance(sendTo);
 
   const contentTemplateVariables = {
     1: from,
