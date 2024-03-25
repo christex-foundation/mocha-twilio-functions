@@ -1,12 +1,26 @@
 //@ts-check
 import { Hono } from 'hono';
 import { config as dotEnvConfig } from 'dotenv';
+import { fetchWalletBalance } from './wallet.mjs';
 
 dotEnvConfig();
 
 const app = new Hono();
 
-app.get('/', (c) => c.json('Hello Create!'));
+app.get('/:phone_number', async (c) => {
+  const { phone_number: phoneNumber } = c.req.param();
+
+  if (!phoneNumber) {
+    return c.json('Invalid request; missing `phoneNumber`', 400);
+  }
+
+  const balance = await fetchWalletBalance(phoneNumber);
+
+  return c.json({
+    balance,
+  });
+});
+
 app.post('/', async (c) => {
   const { phoneNumber } = await c.req.json().catch(() => ({}));
 
