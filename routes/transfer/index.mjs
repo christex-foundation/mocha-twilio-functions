@@ -1,9 +1,6 @@
 //@ts-check
 import { Hono } from 'hono';
-import { config as dotEnvConfig } from 'dotenv';
 import { transfer } from './transfer.mjs';
-
-dotEnvConfig();
 
 const app = new Hono();
 

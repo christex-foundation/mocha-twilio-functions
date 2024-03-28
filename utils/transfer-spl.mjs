@@ -1,16 +1,11 @@
 //@ts-check
-
-import { config as dotEnvConfig } from 'dotenv';
-import { getKeypairFromEnvironment } from '@solana-developers/helpers';
 import { getOrCreateUserTokenAccount } from './wallet.mjs';
 import { transfer } from '@solana/spl-token';
 import { Connection, clusterApiUrl } from '@solana/web3.js';
 import BigNumber from 'bignumber.js';
 
-dotEnvConfig();
-
 const connection = new Connection(clusterApiUrl('devnet'));
-const MOCHA_KEYPAIR = await getKeypairFromEnvironment('MOCHA_SECRET_KEY');
+const MOCHA_KEYPAIR = process.env.MOCHA_SECRET_KEY;
 
 /**
  * @param {string} fromNumber

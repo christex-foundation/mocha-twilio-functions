@@ -1,23 +1,25 @@
 {
   "name": "mocha-wallet",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "./api/index.mjs",
+  "type": "module",
   "scripts": {
     "test:spl-transfer": "node scripts/transfer.mjs",
     "test:create-wallet": "node scripts/wallet.mjs",
-    "start": "node index.mjs"
+    "start": "vercel dev",
+    "deploy": "vercel"
   },
   "keywords": [],
   "author": "Colin Ogoo",
   "license": "ISC",
   "dependencies": {
-    "@hono/node-server": "^1.8.2",
-    "@solana-developers/helpers": "^2.1.0",
     "@solana/spl-token": "^0.4.1",
     "@solana/web3.js": "^1.91.1",
     "bignumber.js": "^9.1.2",
-    "dotenv": "^16.4.5",
     "hono": "^4.1.2"
+  },
+  "devDependencies": {
+    "vercel": "^33.6.1"
   }
 }
