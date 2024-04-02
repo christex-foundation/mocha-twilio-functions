@@ -5,19 +5,20 @@ import {
   createInitializeAccount3Instruction,
   getAccount,
 } from '@solana/spl-token';
+
 import {
-  Connection,
   Keypair,
   LAMPORTS_PER_SOL,
   PublicKey,
   SystemProgram,
   Transaction,
-  clusterApiUrl,
   sendAndConfirmTransaction,
 } from '@solana/web3.js';
+import getConnection from './connection.mjs';
 
-const connection = new Connection(clusterApiUrl('devnet'));
-const USDC_DEVNET_MINT = new PublicKey('4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU');
+const connection = getConnection();
+// @ts-ignore
+const USDC_MINT = new PublicKey(process.env.USDC_MINT);
 
 /**
  * @description GET the public key of the account with seed, assigned to TOKEN_PROGRAM_ID
@@ -38,7 +39,7 @@ export async function getOrCreateUserTokenAccount(owner, phoneNumber) {
     // initialize account as token account for USDC
     const initiailizeAccountIx = createInitializeAccount3Instruction(
       address,
-      USDC_DEVNET_MINT,
+      USDC_MINT,
       owner.publicKey,
     );
 

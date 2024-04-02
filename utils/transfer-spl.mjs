@@ -1,11 +1,15 @@
 //@ts-check
 import { getOrCreateUserTokenAccount } from './wallet.mjs';
 import { transfer } from '@solana/spl-token';
-import { Connection, clusterApiUrl } from '@solana/web3.js';
+import { Keypair } from '@solana/web3.js';
 import BigNumber from 'bignumber.js';
+import getConnection from './connection.mjs';
 
-const connection = new Connection(clusterApiUrl('devnet'));
-const MOCHA_KEYPAIR = process.env.MOCHA_SECRET_KEY;
+const connection = getConnection();
+const MOCHA_KEYPAIR = Keypair.fromSecretKey(
+  // @ts-ignore
+  Uint8Array.from(JSON.parse(process.env.MOCHA_SECRET_KEY)),
+);
 
 /**
  * @param {string} fromNumber

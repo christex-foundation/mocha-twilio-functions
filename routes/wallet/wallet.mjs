@@ -1,9 +1,11 @@
 //@ts-check
 
 import { getOrCreateUserTokenAccount } from '../../utils/wallet.mjs';
-import { Connection, clusterApiUrl } from '@solana/web3.js';
+import { Connection, Keypair, clusterApiUrl } from '@solana/web3.js';
 
-const MOCHA_KEYPAIR = process.env.MOCHA_SECRET_KEY;
+const MOCHA_KEYPAIR = Keypair.fromSecretKey(
+  Uint8Array.from(JSON.parse(process.env.MOCHA_SECRET_KEY)),
+);
 const connection = new Connection(clusterApiUrl('devnet'));
 
 /**
