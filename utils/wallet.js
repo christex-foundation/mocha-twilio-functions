@@ -1,6 +1,6 @@
 //@ts-check
 
-const BASE_URL = 'https://6cd7-196-216-220-211.ngrok-free.app/api/v1/wallet';
+const BASE_URL = 'https://mocha-whatsapp-wallet.vercel.app/api/v1/wallet';
 
 /**
  * @description Function to fetch the wallet balance
