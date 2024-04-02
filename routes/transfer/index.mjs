@@ -15,6 +15,7 @@ app.post('/', async (c) => {
       400,
     );
   }
+
   const transactionId = await transfer(fromNumber, toNumber, Number(amount));
   return c.json(
     {
