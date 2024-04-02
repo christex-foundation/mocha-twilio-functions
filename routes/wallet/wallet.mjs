@@ -1,12 +1,14 @@
 //@ts-check
 
+import getConnection from '../../utils/connection.mjs';
 import { getOrCreateUserTokenAccount } from '../../utils/wallet.mjs';
 import { Connection, Keypair, clusterApiUrl } from '@solana/web3.js';
 
 const MOCHA_KEYPAIR = Keypair.fromSecretKey(
+  // @ts-ignore
   Uint8Array.from(JSON.parse(process.env.MOCHA_SECRET_KEY)),
 );
-const connection = new Connection(clusterApiUrl('devnet'));
+const connection = getConnection();
 
 /**
  * @description Function to fetch the wallet balance
