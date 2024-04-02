@@ -6,8 +6,7 @@ const app = new Hono();
 
 app.get('/', (c) => c.json('Hello Transfer!'));
 app.post('/', async (c) => {
-  const { fromNumber, toNumber, amount } = await c.req.json().catch(() => ({}));
-
+  const { fromNumber, toNumber, amount } = await c.req.raw.json().catch(() => ({}));
   if (!fromNumber || !toNumber || !amount) {
     return c.json(
       {
@@ -16,9 +15,7 @@ app.post('/', async (c) => {
       400,
     );
   }
-
   const transactionId = await transfer(fromNumber, toNumber, Number(amount));
-
   return c.json(
     {
       message: 'Transfer successful',

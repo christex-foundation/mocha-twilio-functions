@@ -7,7 +7,7 @@
   "scripts": {
     "test:spl-transfer": "node scripts/transfer.mjs",
     "test:create-wallet": "node scripts/wallet.mjs",
-    "start": "vercel dev",
+    "start": "NODEJS_HELPERS=0 vercel dev",
     "deploy": "vercel"
   },
   "keywords": [],
