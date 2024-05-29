@@ -10,6 +10,9 @@ import { transferUSDC } from '../../utils/transfer-spl.mjs';
  */
 export async function transfer(fromNumber, toNumber, amount) {
   // run validation
+  // TODO: validate numbers
+  // https://twilio.com/docs/lookup/quickstart
+  //https://www.twilio.com/docs/glossary/what-e164
   console.log(`Transferrring USDC`);
   // call transfer
   return transferUSDC(fromNumber, toNumber, amount);

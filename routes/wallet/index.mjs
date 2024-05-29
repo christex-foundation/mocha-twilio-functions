@@ -13,7 +13,7 @@ app.get('/:phone_number', async (c) => {
 
   // validate phone number based on area code
   // validatePhoneNumber(phoneNumber);
-  console.log('Fetching wallet balance');
+
   const balance = await fetchWalletBalance(phoneNumber);
 
   return c.json({

@@ -19,5 +19,5 @@ export async function fetchWalletBalance(phoneNumber) {
   const address = await getOrCreateUserTokenAccount(MOCHA_KEYPAIR, phoneNumber);
   const balance = await connection.getTokenAccountBalance(address, 'processed');
 
-  return balance.value.uiAmount;
+  return balance.value.uiAmount?.toFixed(2);
 }
