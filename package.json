@@ -17,6 +17,7 @@
     "@hono/node-server": "^1.9.0",
     "@solana/spl-token": "^0.4.1",
     "@solana/web3.js": "^1.91.1",
+    "@supabase/supabase-js": "^2.43.4",
     "bignumber.js": "^9.1.2",
     "hono": "^4.1.2"
   },
