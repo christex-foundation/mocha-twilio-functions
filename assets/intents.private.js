@@ -23,8 +23,8 @@ async function createCashOutIntent({ from_number }) {
 /**
  * @description Function to create cash-out intent
  */
-async function updateCashOutIntent({ from_number, amount }) {
-  const response = await fetch(`${BASE_URL}`, {
+async function updateCashOutIntent(id, { from_number, amount }) {
+  const response = await fetch(`${BASE_URL}/${id}`, {
     method: 'POST',
     body: JSON.stringify({
       from_number,

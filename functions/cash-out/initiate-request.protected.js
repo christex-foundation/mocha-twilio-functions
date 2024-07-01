@@ -9,7 +9,7 @@ exports.handler = async function (context, event, callback) {
   const phoneNumber = utils.extractPhoneNumber(to);
 
   console.log(`Creating cash out intent for ${phoneNumber}`);
-  await intents.createCashOutIntent({ from_number: phoneNumber });
+  const { id } = await intents.createCashOutIntent({ from_number: phoneNumber });
 
   console.log(`Fetching wallet balance for ${phoneNumber}`);
   const balance = await wallet.fetchWalletBalance(phoneNumber);
@@ -19,6 +19,7 @@ exports.handler = async function (context, event, callback) {
 _🔁 The current exchange rate is 1 USD = 23.5 SLL_
 
 _Example: 9.5_`,
+    id,
   });
 };
 
