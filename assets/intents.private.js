@@ -20,4 +20,22 @@ async function postCashOutIntent({ from_number }) {
   return response;
 }
 
-module.exports = { postCashOutIntent };
+/**
+ * @description Function to create cash-out intent
+ */
+async function updateCashOutIntent({ from_number, amount }) {
+  const response = await fetch(`${BASE_URL}`, {
+    method: 'POST',
+    body: JSON.stringify({
+      from_number,
+      amount,
+    }),
+    headers: {
+      'X-API-Key': process.env.MOCHA_API_KEY,
+    },
+  }).then((res) => res.json());
+
+  return response;
+}
+
+module.exports = { postCashOutIntent, updateCashOutIntent };
