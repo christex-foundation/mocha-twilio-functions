@@ -5,7 +5,7 @@
  */
 exports.handler = async function (context, event, callback) {
   const { wallet, intents, utils } = importTwilioModules();
-  const { to, amount } = event;
+  const { to, amount, id } = event;
   const phoneNumber = utils.extractPhoneNumber(to);
 
   console.log(`Fetching wallet balance for ${phoneNumber}`);
@@ -20,10 +20,16 @@ exports.handler = async function (context, event, callback) {
     return;
   }
 
-  console.log(`Updating cash out intent for ${phoneNumber}`);
-  await intents.updateCashOutIntent({
+  console.log(`Updating cash out intent for ${phoneNumber}`, {
     from_number: phoneNumber,
     amount,
+    currency: 'USD',
+  });
+
+  await intents.updateCashOutIntent(id, {
+    from_number: phoneNumber,
+    amount,
+    currency: 'USD',
   });
 
   callback(null, {
