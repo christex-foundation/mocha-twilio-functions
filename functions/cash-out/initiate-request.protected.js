@@ -9,7 +9,7 @@ exports.handler = async function (context, event, callback) {
   const phoneNumber = utils.extractPhoneNumber(to);
 
   console.log(`Creating cash out intent for ${phoneNumber}`);
-  await intents.postCashOutIntent({ from_number: phoneNumber });
+  await intents.createCashOutIntent({ from_number: phoneNumber });
 
   console.log(`Fetching wallet balance for ${phoneNumber}`);
   const balance = await wallet.fetchWalletBalance(phoneNumber);

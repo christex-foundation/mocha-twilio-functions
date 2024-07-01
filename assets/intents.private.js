@@ -5,7 +5,7 @@ const BASE_URL = `${process.env.MOCHA_API_URL}/api/v1/intents`;
 /**
  * @description Function to create cash-out intent
  */
-async function postCashOutIntent({ from_number }) {
+async function createCashOutIntent({ from_number }) {
   const response = await fetch(`${BASE_URL}`, {
     method: 'POST',
     body: JSON.stringify({
@@ -38,4 +38,4 @@ async function updateCashOutIntent({ from_number, amount }) {
   return response;
 }
 
-module.exports = { postCashOutIntent, updateCashOutIntent };
+module.exports = { createCashOutIntent, updateCashOutIntent };
