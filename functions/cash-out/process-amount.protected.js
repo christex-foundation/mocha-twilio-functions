@@ -6,12 +6,12 @@
 exports.handler = async function (context, event, callback) {
   const { wallet, intents, utils } = importTwilioModules();
   const { to, amount, id } = event;
-  const phoneNumber = utils.extractPhoneNumber(to);
 
-  console.log(`Fetching wallet balance for ${phoneNumber}`);
-  const balance = await wallet.fetchWalletBalance(phoneNumber);
+  console.log(`Fetching wallet balance for ${to}`);
+  const balance = await wallet.fetchWalletBalance(to);
 
-  if (balance < amount) {
+  // TODO: make more robust
+  if (amount >= balance) {
     callback({
       responseMessage: `You do not have enough funds to cash out. Your balance is *${balance}*
       `,
@@ -20,24 +20,28 @@ exports.handler = async function (context, event, callback) {
     return;
   }
 
-  console.log(`Updating cash out intent for ${phoneNumber}`, {
-    from_number: phoneNumber,
+  console.log(`Updating cash out intent for ${to}`, {
+    from_number: to,
     amount,
     currency: 'USD',
   });
 
   await intents.updateCashOutIntent(id, {
-    from_number: phoneNumber,
+    from_number: to,
     amount,
     currency: 'USD',
   });
 
+  const exchangeRate = fetchExchangeRate({ from: 'USD', to: 'SLL' });
+
   callback(null, {
-    responseMessage: `How would you like to cash out?
+    responseMessage: `
+In total, you will receive *Le ${amount * exchangeRate}*.    
+    
+How would you like to cash out?
 
 💵 1. Cash Pick-up/Drop-off
-🟠 2. Orange Money
-💼 3. Wallet Address`,
+🟠 2. Orange Money`,
   });
 };
 
@@ -54,4 +58,8 @@ function importTwilioModules() {
   const utilsPath = Runtime.getAssets()['/utils.js'].path;
   const utils = require(utilsPath);
   return { wallet, intents, utils };
+}
+
+function fetchExchangeRate({ from, to }) {
+  return 23.5;
 }

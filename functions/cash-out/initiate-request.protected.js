@@ -4,18 +4,18 @@
  * Handle Cash-Out Request
  */
 exports.handler = async function (context, event, callback) {
+  console.log('🚀 ~ event:', event);
   const { wallet, intents, utils } = importTwilioModules();
   const { to } = event;
-  const phoneNumber = utils.extractPhoneNumber(to);
 
-  console.log(`Creating cash out intent for ${phoneNumber}`);
-  const { id } = await intents.createCashOutIntent({ from_number: phoneNumber });
+  console.log(`Creating cash out intent for ${to}`);
+  const { id } = await intents.createCashOutIntent({ from_number: to });
 
-  console.log(`Fetching wallet balance for ${phoneNumber}`);
-  const balance = await wallet.fetchWalletBalance(phoneNumber);
+  console.log(`Fetching wallet balance for ${to}`);
+  const balance = await wallet.fetchWalletBalance(to);
 
   callback(null, {
-    responseMessage: `Your balance is *${balance}*. How much would you like to cash out?
+    responseMessage: `Your balance is *\$${balance}*. How much would you like to cash out?
 _🔁 The current exchange rate is 1 USD = 23.5 SLL_
 
 _Example: 9.5_`,

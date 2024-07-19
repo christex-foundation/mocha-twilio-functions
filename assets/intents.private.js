@@ -12,6 +12,7 @@ async function createCashOutIntent({ from_number }) {
       object: 'cashout_intent',
       from_number,
     }),
+    // @ts-ignore
     headers: {
       'X-API-Key': process.env.MOCHA_API_KEY,
     },
@@ -30,6 +31,7 @@ async function updateCashOutIntent(id, { from_number, amount }) {
       from_number,
       amount,
     }),
+    // @ts-ignore
     headers: {
       'X-API-Key': process.env.MOCHA_API_KEY,
     },
